@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Authors Favorites</title>
+</head>
+<body>
+<div class = d-flex>
+    <div>
+        <h1>{{author.name}} Favorites</h1>
+        <table>
+            <tr>
+            <th>Title:</th>
+            <th># of pages:</th>
+            {% for book in author.books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.num_of_pages }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/">Home</a>
+    </div>
+    <div>
+    <h1>Add Author's Favorite</h1>
+    <form action="/authors/{{ author.id }}/add_book" method="post">
+        <select name="book_id" id="">
+            {% for book in all_books %}
+            <option value="{{book.id}}">{{book.title}}</option>
+            {%endfor%}
+        </select>
+        <button>Submit</button>
+    </form>
+    </div>
+</div>
+</body>
+</html>
